@@ -9,16 +9,8 @@
 #' @param threshold The similarity threshold for titles (default is 0.03).
 #' 
 #' @return A data frame with an additional column 'Duplicate' indicating duplicates.
-#' @examples
-#' data <- data.frame(
-#'   PMID = 1:4,
-#'   Title = c("Meta Analysis of Studies", "Meta-Analysis of Studies", "A Comprehensive Review", "Comprehensive Review"),
-#'   Authors = c("John Doe", "J. Doe", "Jane Smith", "J. Smith"),
-#'   DOI = c("10.1000/xyz123", "10.1000/xyz124", "10.1000/xyz125", "10.1000/xyz126"),
-#'   stringsAsFactors = FALSE
-#' )
-#' duplicates <- dupliHunter(data, "Title", "Authors", "DOI")
-#' print(duplicates)
+#' @importFrom parallel detectCores makeCluster clusterEvalQ clusterExport parLapply stopCluster
+#' @import stringdist
 #' @export
 dupliHunter <- function(data, title_col, author_col, doi_col, threshold = 0.03) {
   # Preprocess author names to remove diacritical marks and filter

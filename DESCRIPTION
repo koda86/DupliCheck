@@ -1,12 +1,14 @@
 Package: DupliCheck
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Identifiy duplicates from paper metadata
+Version: 0.9
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+    person("Daniel", "Koska", , "daniel.koska@example.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+Description: The DupliCheck R package identifies similar duplicates in datasets based on titles, authors, and DOIs. It's useful for meta-analyses and systematic reviews, leveraging parallel processing and string similarity measures to efficiently handle large datasets.
+License: BSD_2_clause + file LICENSE
 Encoding: UTF-8
+Imports:
+    parallel,
+    stringdist
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
