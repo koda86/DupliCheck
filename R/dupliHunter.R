@@ -28,9 +28,14 @@ dupliHunter <- function(data, title_col, author_col, doi_col, threshold = 0.03) 
     }
   }
   
-  # Preprocess titles to escape special characters
   preprocess_titles <- function(title) {
-    gsub("([][{}()+*^$|\\\\?.])", "\\\\\\1", title) # Filter special characters
+    # Convert the title to UTF-8 to handle encoding issues
+    title <- iconv(title, to = "UTF-8", sub = "byte")
+    # Remove non-printable and non-ASCII characters
+    title <- gsub("[^\x20-\x7E]", "", title)
+    # Escape special regex characters
+    title <- gsub("([][{}()+*^$|\\\\?.])", "\\\\\\1", title)
+    return(title)
   }
   
   preprocessed_authors <- lapply(data[[author_col]], preprocess_authors)
